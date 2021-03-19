@@ -1,6 +1,6 @@
 module TicTacToe
     attr_accessor :value
-    class cell
+    class Cell
         def initialize(value = "")
             @value = value
         end

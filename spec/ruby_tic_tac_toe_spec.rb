@@ -1,6 +1,6 @@
-RSpec.describe RubyTicTacToe do
+RSpec.describe TicTacToe do
   it "has a version number" do
-    expect(RubyTicTacToe::VERSION).not_to be nil
+    expect(TicTacToe::VERSION).not_to be nil
   end
 
   it "does something useful" do
