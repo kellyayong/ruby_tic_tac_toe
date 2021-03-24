@@ -1,56 +1,42 @@
-module TicTacToe
-    class Board
-        attr_reader :grid
-        def initialize(input = {})
-            @grid = input.fetch(:grid, default_grid)
-        end
+class Board
+    attr_accessor :cell
 
-        private
-        def default_grid
-            Array.new(3) { Array.new(3) { Cell.new } }
-        end
+    WINNING_POSITIONS = [
+        [0,1,2], [3,4,5], [6,7,8], [0,3,6], 
+        [1,4,7], [2,5,8], [0,4,8], [2,4,6]
+    ].freeze
 
-        def get_cell(x, y)
-            grid[y][x]
-        end
-
-        def set_cell(x, y, value)
-            get_cell(x,y).value = value
-        end
-
-        def game_over
-            return :winner if winner?
-            return :draw if draw?
-            false
-        end
-
-        def draw?
-            grid.flatten.map { |cell| cell.value }.none_empty?
-        end
-
-        def winning_positions
-            grid +
-            grid.transpose +
-            diagonals
-        end
-        
-        def diagonals 
-            [
-                [get_cell(0,0), get_cell(1,1), get_cell(2,2)],
-                [get_cell(0,2), get_cell(1,1), get_cell(2,0)]
-            ]
-        end
-
-        def winner?
-            winning_positions.each do |winning_position|
-                next if winning_position_values(winning_position).all_empty?
-                return true if winning_position_values(winning_position).all_same?
-            end
-            false
-        end
-
-        def winning_position_values(winning_position)
-            winning_position.map { |cell| cell.value }
-
+    def initialize
+        @cell = [1,2,3,4,5,6,7,8,9]
     end
+
+    def show
+        board = "\n"\
+        " #{cell[0]} | #{cell[1]} | #{cell[2]}\n"\
+        "----------\n"\
+        " #{cell[3]} | #{cell[4]} | #{cell[5]}\n"\
+        "----------\n"\
+        " #{cell[6]} | #{cell[7]} | #{cell[8]}\n"\
+        " \n"
+        puts board
+    end
+
+    def update_board(number,symbol)
+        cell[number] = symbol
+    end
+
+    def valid_move?(number)
+        cell[number-1] == number
+    end
+
+    def draw?
+        @cell.all? {|cell| cell =~ /\D/} 
+    end
+
+    def won?
+        WINNING_POSITIONS.any? do |position| 
+            [cell[position[0]], cell[position[1]], cell[position[2]]].uniq.length == 1
+        end
+    end
+
 end
