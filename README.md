@@ -2,6 +2,13 @@
 
 A Tic Tac Toe game built in Ruby.
 
+## Instruction
+
+Go to the directory (lib) holding the tic_tac_toe.rb file:
+$ cd lib
+and then run the file to start game:
+$ ruby tic_tac_toe.rb
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/kellyayong/ruby_tic_tac_toe. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/kellyayong/ruby_tic_tac_toe/blob/master/CODE_OF_CONDUCT.md).
